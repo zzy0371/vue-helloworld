@@ -1,16 +1,25 @@
 <template>
 	<div>
 		<h1>我是HiWorld组件</h1>
-		<h2>在HiWorld中使用HeiWorld</h2>
-		<HeiWorld></HeiWorld>
+		<p>我接受到msg的值为{{msg}}</p>
+		<p>我接受到num的值为{{num}}</p>
 	</div>
 </template>
 
 <script>
-	import HeiWorld from '@/components/HeiWorld.vue'
 	export default{
+		props:{
+			msg:{
+				type:String,
+				default:"20210126"
+			},
+			// num:Number
+			num:{
+				type:Number,
+				required:true
+			}
+		},
 		components:{
-			HeiWorld
 		}
 	}
 </script>

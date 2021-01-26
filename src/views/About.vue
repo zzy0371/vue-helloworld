@@ -19,7 +19,7 @@
 	</div>
 	<div>
 		<h1>使用全局组件</h1>
-		<HiWorld></HiWorld>
+		<HiWorld msg="20210128" :num="num3"></HiWorld>
 	</div>
   </div>
 </template>
@@ -32,7 +32,8 @@ export default {
 	data(){
 		return{
 			num:0,
-			num2:0
+			num2:0,
+			num3:120
 		}
 	},
 	methods:{

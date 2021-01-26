@@ -7,6 +7,7 @@
 <script>
 export default {
   name: 'HelloWorld',
+  // props 用于由父组件 向子组件传参
   props: {
     msg: String
   }

@@ -4,7 +4,7 @@
     <HelloWorld msg="Welcome to Your Vue.js App"/>
 	<div>
 		<h1>使用全局组件</h1>
-		<HiWorld></HiWorld>
+		<HiWorld :num="10"></HiWorld>
 	</div>
   </div>
 </template>
