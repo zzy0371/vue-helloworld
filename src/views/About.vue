@@ -19,7 +19,7 @@
 	</div>
 	<div>
 		<h1>使用全局组件</h1>
-		<HiWorld msg="20210128" :num="num3"></HiWorld>
+		<HiWorld msg="20210128" :num="num3" @toparent="method1"></HiWorld>
 	</div>
   </div>
 </template>
@@ -37,6 +37,9 @@ export default {
 		}
 	},
 	methods:{
+		method1(e){
+			console.log("About页面收到数据",e);
+		},
 		normal(){
 			console.log("普通方法执行了");
 			return "普通方法"

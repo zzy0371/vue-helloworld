@@ -3,6 +3,8 @@
 		<h1>我是HiWorld组件</h1>
 		<p>我接受到msg的值为{{msg}}</p>
 		<p>我接受到num的值为{{num}}</p>
+		
+		<button @click="tellparent">点击向外层发送事件</button>
 	</div>
 </template>
 
@@ -20,6 +22,11 @@
 			}
 		},
 		components:{
+		},
+		methods:{
+			tellparent(){
+				this.$emit("toparent",{"name":"qiku"})
+			}
 		}
 	}
 </script>
