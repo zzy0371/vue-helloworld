@@ -17,6 +17,10 @@
 		<h2>方法的使用: {{ normal() }}</h2>
 		<h2>计算属性的使用: {{ comput1 }}</h2>
 	</div>
+	<div>
+		<h1>使用全局组件</h1>
+		<HiWorld></HiWorld>
+	</div>
   </div>
 </template>
 
