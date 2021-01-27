@@ -12,6 +12,15 @@ import HiWorld from '@/components/HiWorld.vue'
 Vue.component("HiWorld", HiWorld)
 
 
+// 引入Element-UI框架
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
+
+
+
+// 根VUE实例  
 new Vue({
   router,
   store,

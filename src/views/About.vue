@@ -16,18 +16,24 @@
 	
 	<br>
 	<Star :starnumprop="star3" @tellparent="starchange3"><span slot="to" >给商品评星:</span></Star>
+  
+	<br>
+	<br>
+	<br>
+	<span  v-if="show"><Step></Step></span>   <button @click="show=!show">切换</button>
   </div>
 </template>
 
 
 <script>
 import Heart from '@/components/heart/Heart.vue'
-
 import Star from '@/components/star/Star.vue'
+import Step from '@/components/Step.vue'
 export default {
 	components:{
 		Heart,
-		Star
+		Star,
+		Step
 	},
 	methods:{
 		// 请求API接口 获取点赞状态
@@ -56,6 +62,7 @@ export default {
 	},
 	data(){
 		return {
+			show:true,
 			// 从服务器获取商品点赞状态
 			heartState:true,
 			// 从服务器获取快递点赞状态
@@ -68,9 +75,7 @@ export default {
 			// 从服务器获取客服评星
 			star2:2,
 			// 从服务器获取商品评星
-			star3:3,
-			
-			show:true
+			star3:3
 		}
 	}
 }
