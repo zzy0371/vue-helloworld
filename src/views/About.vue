@@ -1,74 +1,78 @@
 <template>
   <div class="about">
-    <div>
-		<h2>点击计数案例</h2>
-		<p>
-			<button @click="reduce">-</button> 
-			<span>{{num}}</span> 
-			<button @click="add">+</button> 
-		</p>
-		<p>
-			<button @click="num2--">-</button> 
-			<span>{{num2}}</span> 
-			<button @click="num2++">+</button> 
-		</p>
-    </div>
-	<div>
-		<h2>方法的使用: {{ normal() }}</h2>
-		<h2>计算属性的使用: {{ comput1 }}</h2>
-	</div>
-	<div>
-		<HiWorld msg="20210128" :num="num3" @toparent="method1"> 
-		<h1 slot="top">在About页面使用全局组件</h1> 
-		<h2 slot="inner">在About页面向父组件传参</h2> </HiWorld>
-	</div>
+	<Heart :stateprop="heartState" @tellparent="statechange"> <span slot="to">给商品点赞：</span> </Heart>
+	
+	<br>
+	<Heart :stateprop="state2" @tellparent="state2change"> <span slot="to">给快递点赞：</span> </Heart>
+	
+	<br>
+	<Heart :stateprop="state3" @tellparent="state3change"> <span slot="to">给客服点赞：</span> </Heart>
+ 
+	<br>
+	<Star :starnumprop="star1" @tellparent="starchange1"><span slot="to" >给客服评星:</span></Star>
+	
+	<br>
+	<Star :starnumprop="star2" @tellparent="starchange2"><span slot="to" >给快递评星:</span></Star>
+	
+	<br>
+	<Star :starnumprop="star3" @tellparent="starchange3"><span slot="to" >给商品评星:</span></Star>
   </div>
 </template>
 
 
 <script>
-	// vue 中的内容都需要写在es6的模块中
+import Heart from '@/components/heart/Heart.vue'
+
+import Star from '@/components/star/Star.vue'
 export default {
-	// 在组件中使用data必须使用函数格式写法  在函数的返回值中返回数据模型
-	data(){
-		return{
-			num:0,
-			num2:0,
-			num3:120
-		}
+	components:{
+		Heart,
+		Star
 	},
 	methods:{
-		method1(e){
-			console.log("About页面收到数据",e);
+		// 请求API接口 获取点赞状态
+		
+		
+		statechange(e){
+			console.log("通知服务器将商品点赞状态设置为", e.state);
 		},
-		normal(){
-			console.log("普通方法执行了");
-			return "普通方法"
+		state2change(e){
+			console.log("通知服务器将快递点赞状态设置为", e.state);
 		},
-		reduce(){
-			this.num--;
+		state3change(e){
+			console.log("通知服务器将客服点赞状态设置为", e.state);
 		},
-		add(){
-			this.num++;
+		
+		starchange1(e){
+			console.log("通知服务器将客服评星设置为", e.starnum);
+		},
+		starchange2(e){
+			
+			console.log("通知服务器将快递评星设置为", e.starnum);
+		},
+		starchange3(e){
+			console.log("通知服务器将商品评星设置为", e.starnum);
 		}
 	},
-	computed:{
-		comput1(){
-			console.log("计算属性执行了");
-			return "计算属性"+this.num
-		}
-	},
-	watch:{
-		num(newValue,oldValue){
-			console.log("监听到num变化了",newValue,oldValue,);
-		},
-		num2(newValue,oldValue){
-			console.log("监听到了num2变化了",newValue,oldValue,);
+	data(){
+		return {
+			// 从服务器获取商品点赞状态
+			heartState:true,
+			// 从服务器获取快递点赞状态
+			state2:false,
+			// 从服务器获取快递点赞状态
+			state3:false,
+			
+			// 从服务器获取快递评星
+			star1:1,
+			// 从服务器获取客服评星
+			star2:2,
+			// 从服务器获取商品评星
+			star3:3,
+			
+			show:true
 		}
 	}
 }
 
-// 方法：在methods中编写  当页面刷新 普通方法执行
-// 计算属性： 在computed 中编写  只有计算属性关联的对象发生变化 计算属性才会从新计算
-// 侦听器： 在watch中编写  可以针对指定变量监听变化  
 </script>
