@@ -18,8 +18,9 @@
 		<h2>计算属性的使用: {{ comput1 }}</h2>
 	</div>
 	<div>
-		<h1>使用全局组件</h1>
-		<HiWorld msg="20210128" :num="num3" @toparent="method1"></HiWorld>
+		<HiWorld msg="20210128" :num="num3" @toparent="method1"> 
+		<h1 slot="top">在About页面使用全局组件</h1> 
+		<h2 slot="inner">在About页面向父组件传参</h2> </HiWorld>
 	</div>
   </div>
 </template>

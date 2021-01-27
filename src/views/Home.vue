@@ -3,8 +3,9 @@
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
 	<div>
-		<h1>使用全局组件</h1>
-		<HiWorld :num="10" @toparent="method1"></HiWorld>
+		<HiWorld :num="10" @toparent="method1">
+		<h1 slot="inner">在Home页面使用全局组件</h1>
+		<h2 slot="top">在Home页面向父组件传参</h2>  </HiWorld>
 	</div>
   </div>
 </template>
