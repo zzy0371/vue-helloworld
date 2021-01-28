@@ -11,9 +11,9 @@
 			</el-col>
 		</el-row>
 		<el-row class="list">
-			<el-col :span="6" v-for="(a,index) in articles" :key="a.title">
+			<el-col class="articletitle" :span="6" v-for="(a,index) in articles" :key="a.title">
 				<router-link :to="'/article/'+a.id">
-					<el-tag type="success" > 第{{index+1}}章-- {{a.title}} </el-tag>
+					第{{index+1}}章-- {{a.title}}
 				</router-link>
 			</el-col>
 		</el-row>
@@ -60,6 +60,10 @@
 	}
 	.list{
 		padding: 40px 0px;
+		.articletitle{
+			text-align: left;
+			padding: 20px;
+		}
 	}
 }
 </style>

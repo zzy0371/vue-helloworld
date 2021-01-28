@@ -47,7 +47,9 @@
 		img{
 			width: 100%;
 		}
-		min-width: 150px;
+	}
+	.el-col{
+		margin: 10px 0;
 	}
 }
 </style>

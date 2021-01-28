@@ -1,8 +1,8 @@
 <template>
 	<div class="article">
-		{{article.content}}
-		<br>
-		<!-- <router-link :to="{name:'Book',params:{pk:article.bookid}}">返回章节列表</router-link> -->
+		<el-row class="content">
+			{{article.content}}
+		</el-row>
 		<el-button type="danger" @click="$router.go(-1)">返回章节列表</el-button>
 	</div>
 </template>
@@ -24,5 +24,10 @@
 	}
 </script>
 
-<style>
+<style lang="less">
+	.article{
+		.content{
+			margin: 50px 0;
+		}
+	}
 </style>
