@@ -29,11 +29,16 @@
 import Heart from '@/components/heart/Heart.vue'
 import Star from '@/components/star/Star.vue'
 import Step from '@/components/Step.vue'
+
+
 export default {
 	components:{
 		Heart,
 		Star,
 		Step
+	},
+	created() {
+
 	},
 	methods:{
 		// 请求API接口 获取点赞状态
