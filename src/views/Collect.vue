@@ -1,0 +1,11 @@
+<template>
+	<div class="collect">
+		我的收藏
+	</div>
+</template>
+
+<script>
+</script>
+
+<style>
+</style>

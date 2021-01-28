@@ -14,10 +14,10 @@
 				<!-- <el-menu-item index="2"><router-link :to="{name:'Element'}">Element-UI</router-link></el-menu-item> -->
 				<el-submenu index="3">
 				<template slot="title">我的</template>
-				<el-menu-item index="3-1">收藏</el-menu-item>
+				<el-menu-item index="3-1"><router-link style="color: rgb(255, 255, 255);text-decoration: none;" :to="{name:'Collect'}">收藏</router-link></el-menu-item>
 				</el-submenu>
 				<el-menu-item index="4" class="rt">注册</el-menu-item>
-				<el-menu-item index="5" class="rt">登录</el-menu-item>
+				<el-menu-item index="5" class="rt"><router-link :to="{name:'Login'}">登录</router-link></el-menu-item>
 
 				</el-menu>
 		</el-header>
