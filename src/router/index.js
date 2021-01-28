@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
   {
+	// 路由路径
     path: '/',
+	// 路由名字
     name: 'Home',
+	// 当路由匹配成功时展示的组件
     component: Home
   },
   {
@@ -17,9 +19,15 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/element',
+    name: 'Element',
+    component: () => import(/* webpackChunkName: "element" */ '../views/Element.vue')
   }
 ]
 
+// 构造VUE-Router的实例
 const router = new VueRouter({
   routes
 })
