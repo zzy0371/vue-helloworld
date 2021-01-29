@@ -28,6 +28,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
   },
   {
+    path: '/regist',
+    name: 'Regist',
+    component: () => import(/* webpackChunkName: "regist" */ '../views/Regist.vue')
+  },
+  {
     path: '/center',
     name: 'Center',
 	//使用meta 传参 携带需要登录的标志 auth

@@ -24,7 +24,7 @@
 				</template>
 				
 				<template v-else>
-					<el-menu-item index="4" class="rt">注册</el-menu-item>
+					<el-menu-item index="4" class="rt"><router-link :to="{name:'Regist'}">注册</router-link></el-menu-item>
 					<el-menu-item index="5" class="rt"><router-link :to="{name:'Login'}">登录</router-link></el-menu-item>
 				</template>
 				

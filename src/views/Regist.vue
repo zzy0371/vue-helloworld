@@ -9,9 +9,12 @@
 					<el-form-item label="密码">
 						<el-input placeholder="请输入密码" v-model="formLabelAlign.password" show-password></el-input>
 					</el-form-item>
+					<el-form-item label="重复密码">
+						<el-input placeholder="请再次输入密码" v-model="formLabelAlign.password2" show-password></el-input>
+					</el-form-item>
 					<el-form-item>
-						<el-button type="primary" @click="onSubmit">登录</el-button>
-						<el-button @click="$router.push({name:'Regist'})">没有账号,去注册</el-button>
+						<el-button type="primary" @click="onSubmit">注册</el-button>
+						<el-button @click="$router.push({name:'Login'})">已有账号,去登录</el-button>
 					</el-form-item>
 				</el-form>
 			</el-col>
@@ -29,26 +32,14 @@
 				formLabelAlign: {
 					username: '',
 					password: '',
+					password2: '',
 				}
 			};
 		},
 		methods: {
 			onSubmit() {
-				console.log('登录成功');
-				this.$jsCookie.set('user', 'zzy0371', { expires: 7 })
-				
-				// this.$root.$children[0].user = "zzy0371"
-				this.$bus.$emit("userlogin","zzy0371")
-				
-				
-				let next = this.$route.query.next;
-				if(next){
-					this.$router.push(next)
-				}
-				else{
-					this.$router.push({name:'Home'})
-				}
-				
+				console.log('注册成功');
+			
 				
 			}
 		}
