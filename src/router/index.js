@@ -28,6 +28,35 @@ const routes = [
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
   },
   {
+    path: '/center',
+    name: 'Center',
+	//使用meta 传参 携带需要登录的标志 auth
+	meta:{
+		auth:true
+	},
+	redirect:{
+		name:"UserInfo"
+	},
+    component: () => import(/* webpackChunkName: "center" */ '../views/Center.vue'),
+	children:[
+		{
+			path: 'userinfo',
+			name: 'UserInfo',
+			component: () => import(/* webpackChunkName: "userinfo" */ '../views/UserInfo.vue')
+		},
+		{
+			path: 'sethead',
+			name: 'SetHead',
+			component: () => import(/* webpackChunkName: "sethead" */ '../views/SetHead.vue')
+		},
+		{
+			path: 'setpassword',
+			name: 'SetPassword',
+			component: () => import(/* webpackChunkName: "setpassword" */ '../views/SetPassword.vue')
+		},
+	]
+  },
+  {
     path: '/collect',
     name: 'Collect',
 	//使用meta 传参 携带需要登录的标志 auth

@@ -19,7 +19,7 @@
 				
 				<template v-if="user">
 					<el-menu-item index="5" class="rt" @click="logout">退出</el-menu-item>
-					<el-menu-item index="4" class="rt">{{user}}</el-menu-item>
+					<el-menu-item index="4" class="rt"><router-link :to="{name:'Center'}">{{user}}</router-link></el-menu-item>
 					
 				</template>
 				
