@@ -21,7 +21,7 @@
 </template>
 
 <script>
-	import Cookies from 'js-cookie'
+	// import Cookies from 'js-cookie'
 	export default {
 		data() {
 			return {
@@ -35,9 +35,11 @@
 		methods: {
 			onSubmit() {
 				console.log('登录成功');
-				Cookies.set('user', 'zzy0371', { expires: 7 })
+				this.$jsCookie.set('user', 'zzy0371', { expires: 7 })
 				
-				this.$root.$children[0].user = "zzy0371"
+				// this.$root.$children[0].user = "zzy0371"
+				this.$bus.$emit("userlogin","zzy0371")
+				
 				
 				let next = this.$route.query.next;
 				if(next){

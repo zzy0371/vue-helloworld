@@ -31,6 +31,21 @@ Vue.use(ElementUI);
 // 导入全局CSS
 import './assets/css/main.css'
 
+
+// 导入js-cookie插件 并且注册到VUE的原型中 以后可以通过VUE实例的 this直接访问$jsCookie
+import Cookies from 'js-cookie'
+Vue.prototype.$jsCookie = Cookies
+
+
+// 新建VUE的实例 bus作为事件总线  将bus注册到VUE的原型中  以后再VUE的实例中就可以直接使用this.$bus
+let bus = new Vue()
+Vue.prototype.$bus = bus
+
+
+
+
+
+
 // 根VUE实例  
 new Vue({
   router,

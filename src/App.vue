@@ -42,7 +42,7 @@
 </template>
 
 <script>
-	import Cookies from 'js-cookie'
+	// import Cookies from 'js-cookie'
 	export default{
 		data(){
 			return{
@@ -51,11 +51,18 @@
 			}
 		},
 		created() {
-			let user =Cookies.get('user')
+			this.$bus.$on("userlogin",_u=>{
+				this.user=_u
+			})
+			
+			let user =this.$jsCookie.get('user')
 			if(user)
 			{
 				this.user=user;
 			}
+		},
+		beforeDestroy() {
+			this.$bus.$off("userlogin")
 		},
 		methods: {
 			handleSelect(key, keyPath) {
@@ -68,7 +75,7 @@
 					// this.$router.replace({name:"Home"})
 				}
 				this.user=null;
-				Cookies.remove('user')
+				this.$jsCookie.remove('user')
 			}
 		}
 	}
