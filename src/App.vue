@@ -16,8 +16,18 @@
 				<template slot="title">我的</template>
 				<el-menu-item index="3-1"><router-link style="color: rgb(255, 255, 255);text-decoration: none;" :to="{name:'Collect'}">收藏</router-link></el-menu-item>
 				</el-submenu>
-				<el-menu-item index="4" class="rt">注册</el-menu-item>
-				<el-menu-item index="5" class="rt"><router-link :to="{name:'Login'}">登录</router-link></el-menu-item>
+				
+				<template v-if="user">
+					<el-menu-item index="5" class="rt" @click="logout">退出</el-menu-item>
+					<el-menu-item index="4" class="rt">{{user}}</el-menu-item>
+					
+				</template>
+				
+				<template v-else>
+					<el-menu-item index="4" class="rt">注册</el-menu-item>
+					<el-menu-item index="5" class="rt"><router-link :to="{name:'Login'}">登录</router-link></el-menu-item>
+				</template>
+				
 
 				</el-menu>
 		</el-header>
@@ -32,15 +42,33 @@
 </template>
 
 <script>
+	import Cookies from 'js-cookie'
 	export default{
 		data(){
 			return{
+				user:null,
 				activeIndex2: '1'
+			}
+		},
+		created() {
+			let user =Cookies.get('user')
+			if(user)
+			{
+				this.user=user;
 			}
 		},
 		methods: {
 			handleSelect(key, keyPath) {
 				console.log(key, keyPath);
+			},
+			logout(){
+				if(this.$route.name!="Home")
+				{
+					this.$router.push({name:"Home"});
+					// this.$router.replace({name:"Home"})
+				}
+				this.user=null;
+				Cookies.remove('user')
 			}
 		}
 	}
@@ -66,7 +94,7 @@
 	background-color: #B3C0D1;
   }
   a{
-	&.router-link-exact-active{
+	&{
 		text-decoration: none;
 	}
   }
