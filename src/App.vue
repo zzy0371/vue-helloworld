@@ -11,7 +11,7 @@
 					text-color="#fff"
 					active-text-color="#ffd04b">
 				<el-menu-item index="1"><router-link :to="{name:'Home'}">首页</router-link></el-menu-item>
-				<!-- <el-menu-item index="2"><router-link :to="{name:'Element'}">Element-UI</router-link></el-menu-item> -->
+				<el-menu-item index="2"><router-link :to="{name:'About'}">关于</router-link></el-menu-item>
 				<el-submenu index="3">
 				<template slot="title">我的</template>
 				<el-menu-item index="3-1"><router-link style="color: rgb(255, 255, 255);text-decoration: none;" :to="{name:'Collect'}">收藏</router-link></el-menu-item>

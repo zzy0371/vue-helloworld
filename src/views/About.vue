@@ -21,8 +21,90 @@
 	<br>
 	<br>
 	<span  v-if="show"><Step></Step></span>   <button @click="show=!show">切换</button>
+	<br>
+	<br>
+	<br>
+	
+	<transition>
+		<div class="target" v-show="play"></div>
+	</transition>
+	<button @click="play=!play">动画</button>
+	
   </div>
 </template>
+
+<style>
+	
+	@keyframes hide{
+		from{
+			width: 100px;
+			height: 100px;
+			opacity: 1;
+			left: 0;
+		}
+		to{
+			width: 0;
+			height: 0;
+			opacity: 0;
+			left: -200px;
+		}
+	}
+	
+	.target{
+		width: 100px;
+		height: 100px;
+		background-color: red;
+		position: relative;
+	}
+	.v-enter{
+
+	}
+	.v-enter-active{
+		animation: hide 2s reverse linear;
+	}
+	.v-enter-to{
+	
+	}
+	.v-leave{
+
+	}
+	.v-leave-active{
+		animation: hide 2s linear;
+	}
+	.v-leave-to{
+
+	}
+	
+	
+	
+/* 	.v-enter{
+		opacity: 0;
+		left: -200px;
+		width: 0;
+		height: 0;
+	}
+	.v-enter-active{
+		transition: all 2s linear;
+	}
+	.v-enter-to{
+		opacity: 1;
+		left: 0;
+	}
+	.v-leave{
+		opacity: 1;
+		left: 0;
+	}
+	.v-leave-active{
+		transition:  all 2s linear;
+	}
+	.v-leave-to{
+		opacity: 0;
+		left: -200px;
+		width: 0;
+		height: 0;
+	} */
+	
+</style>
 
 
 <script>
@@ -67,6 +149,7 @@ export default {
 	},
 	data(){
 		return {
+			play:true,
 			show:true,
 			// 从服务器获取商品点赞状态
 			heartState:true,

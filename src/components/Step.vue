@@ -27,9 +27,9 @@
 		// 执行注入工作 data或者methods等都可以使用
 		created() {
 			console.log("组件创建了",this.num,this.myfun,this.$el);
-			this.myInterval = setInterval(function(){
-				console.log("+++");
-			},1000)
+			// this.myInterval = setInterval(function(){
+			// 	console.log("+++");
+			// },1000)
 		},
 		beforeMount() {
 			console.log("组件渲染之前",this.$el);
