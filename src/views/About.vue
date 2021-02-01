@@ -42,6 +42,14 @@
 	<span class="iconfont icon-fenlei"></span>
 	<span class="iconfont icon-B"></span>
 	<span class="iconfont icon-qicheqianlian-"></span>
+	
+	<br>
+	<br>
+	<br>
+	<button @click="login">登录</button>
+	<button @click="getlatestdiarts">获取最新日记</button>
+	<button @click="getdiarybyid">获取指定日记</button>
+	<button @click="creatediary">创建日记</button>
   </div>
 </template>
 
@@ -157,6 +165,81 @@ export default {
 		},
 		starchange3(e){
 			console.log("通知服务器将商品评星设置为", e.starnum);
+		},
+		login(){
+			this.$axios.post("obtainjwt/",{
+				username:"admin",
+				password:"123456"
+			}).then((res)=>{
+				
+				if(res.status==200){
+					console.log("登录成功",res.data.access);
+					this.$jsCookie.set("token",res.data.access)
+				}
+			}).catch(function(err){
+				console.log("失败原因",err);
+			})
+		},
+		getlatestdiarts(){
+			// this.$axios.get("http://127.0.0.1:8000/diarys/get_latest/",{
+			// 	params:{
+			// 		page:2,
+			// 		page_size:3
+			// 	}
+			// }).then(res=>{
+			// 	if(res.status==200){
+			// 		console.log("最新日记",res.data);
+			// 	}
+			// }).catch(err=>{
+			// 	console.log("失败原因",err);
+			// })
+			
+			this.$axios({
+				method:"get",
+				url:"diarys/get_latest/",
+				params: {
+					page:2,
+					page_size:3
+				},
+			}).then(res=>{
+				if(res.status==200){
+					console.log("最新日记",res.data);
+				}
+			}).catch(err=>{
+				console.log("失败原因",err);
+			})
+		},
+		getdiarybyid(){
+			this.$axios({
+				method:"get",
+				url:"diarys/2/",
+				headers:{
+					// Authorization:"Basic dGVtcDoxMjM0NTY="
+					Authorization:"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjEyMTYyMjIzLCJqdGkiOiJjYWUxMjllNmU5YTc0YzBhODE1MGY2ZGYyYzkzNTQ2OCIsInVzZXJfaWQiOjF9.DuM88fXyBTK0xNK_2h1OV0gfXSUTeyPEZ26B_Wno42c"
+				}
+			}).then(res=>{
+				console.log("獲取指定日記結果",res)
+			}).catch(err=>{
+				console.log("失败原因",err);
+			})
+		},
+		creatediary(){
+			this.$axios({
+				method:'post',
+				url:"diarys/",
+				data:{
+					content:"我的新年日记",
+					diarybook:"admin的日记本"
+				},
+				headers:{
+					// Authorization:"Basic dGVtcDoxMjM0NTY="
+					Authorization:"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjEyMTYyMjIzLCJqdGkiOiJjYWUxMjllNmU5YTc0YzBhODE1MGY2ZGYyYzkzNTQ2OCIsInVzZXJfaWQiOjF9.DuM88fXyBTK0xNK_2h1OV0gfXSUTeyPEZ26B_Wno42c"
+				}
+			}).then(res=>{
+				console.log("创建日記結果",res)
+			}).catch(err=>{
+				console.log("失败原因",err);
+			})
 		}
 	},
 	data(){
