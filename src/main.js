@@ -87,7 +87,28 @@ axios.interceptors.response.use(function (response) {
 Vue.prototype.$axios = axios
 
 
-
+// 导入mockjs
+import mock from 'mockjs'
+console.log(mock.mock({
+	"key1|1-10":"abc",
+	"key2|10":"abc",
+	"key3|1-5":100,
+	"key4|1-5.2-3":100,
+	"key5|1":true,
+	"key6|1-9":true,
+	"key7|2":{name:"qiku",age:5,addr:"dongsanjie"},
+	"key8|1-3":{name:"qiku",age:5,addr:"dongsanjie"},
+	"key9|1":[1,2,3,4,5],
+	"key10|1-3":[1,2,3,4,5],
+	"key11|3":[1,2,3,4,5],
+	"key12":function(){ 
+			return mock.mock({
+				"key12|3":[1,2]
+			})
+	},
+	"key13":/[1-5][5-9]/,
+	"key14":"@CNAME"
+}));
 
 // 根VUE实例  
 new Vue({
