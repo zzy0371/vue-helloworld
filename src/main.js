@@ -32,6 +32,8 @@ Vue.use(ElementUI);
 // import {obj2,obj3} from './data/index.js'
 // console.log(obj2,obj3);
 
+// 导入icon-font 
+import './assets/css/iconfont.css'
 
 // 导入全局CSS
 import './assets/css/main.css'
