@@ -29,7 +29,12 @@
 			return {
 				books:books
 			}
-		}
+		},
+		// filters:{
+		// 	info(value){
+		// 		return value+"  zzy"
+		// 	}
+		// }
 	}
 </script>
 

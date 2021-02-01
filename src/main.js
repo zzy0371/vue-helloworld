@@ -12,6 +12,11 @@ import HiWorld from '@/components/HiWorld.vue'
 // 2注册组件  注册全局组件
 Vue.component("HiWorld", HiWorld)
 
+// 注册全局过滤器
+Vue.filter("info",function(value){
+	return value+"  zzy"
+})
+
 
 // 引入Element-UI框架
 import ElementUI from 'element-ui';

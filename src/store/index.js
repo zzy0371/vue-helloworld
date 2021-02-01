@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex)
 // VUE数据状态管理器 
 // 用于组件数据传递:非父子组件 或者是多个页面传参
@@ -11,9 +11,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 	// 相当于vue中data
-		collectBooks:[
-			101,102
-		]
+		collectBooks:localStorage.getItem("vuex")?JSON.parse(localStorage.getItem("vuex")).collectBooks:[]
 	},
 	getters:{
 		// 相当于vue中的computed
@@ -42,5 +40,6 @@ export default new Vuex.Store({
 	},
 
 	modules: {
-	}
+	},
+	plugins: [createPersistedState()],
 })
