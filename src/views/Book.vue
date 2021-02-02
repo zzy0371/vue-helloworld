@@ -70,7 +70,18 @@
 			add(){
 				this.$message('加入书架');
 				this.has=true
-				this.$store.commit("addCollect",this.book.id)
+				// this.$store.commit("addCollect",this.book.id)
+				this.$axios({
+					url:"collects",
+					method:"post",
+					data:{
+						id:this.book.id
+					}
+				}).then(res=>{
+					console.log("收藏成功",res.data);
+				}).catch(err=>{
+					console.log("收藏失败",err);
+				})
 			}
 		}
 	}

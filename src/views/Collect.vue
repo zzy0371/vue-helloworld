@@ -34,7 +34,7 @@
 </template>
 
 <script>
-	import {books} from '../data/bookdata.js'
+	// import {books} from '../data/bookdata.js'
 	export default{
 		data(){
 			return{
@@ -44,21 +44,31 @@
 			}
 		},
 		created() {
-			this.$store.getters.getCollectBoos.forEach(id=>{
-				let b = books.filter(b=>{
-					return b.id==id
-				})[0];
-				this.tableData.push(b);
-				
+			this.$axios({
+				url:"collects/",
+				method:"get"
+			}).then(res=>{
+				console.log(res.data,"res");
+				this.tableData=this.tableData.concat(res.data.books)
+			}).catch(err=>{
+				console.log("错误原因",err);
 			})
 		},
 		methods:{
 			handleDelete(index, row) {
 				// console.log(index, row);
 				// this.$store.commit("removeCollect",row.id);
-				this.$store.dispatch("removeCollectAsync",row.id)
 				
+				// this.$store.dispatch("removeCollectAsync",row.id)
 				
+				this.$axios({
+					url:`collects/${row.id}/`,
+					method:'delete'
+				}).then(res=>{
+					console.log("删除收藏成功",res.data);
+				}).catch(err=>{
+					console.log("删除失败",err);
+				})
 				
 				this.tableData=this.tableData.filter(item=>{
 					return item.id != row.id
