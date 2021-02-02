@@ -21,15 +21,24 @@
 </template>
 
 <script>
-	import {books} from '../data/bookdata.js'
-	console.log("books", books)
+	// import {books} from '../data/bookdata.js'
+	// console.log("books", books)
 	export default {
 		name:'Home',
 		data(){
 			return {
-				books:books
+				books:[]
 			}
 		},
+		created() {
+			this.$axios({
+				method:"get",
+				url:"getbooks/"
+			}).then(res=>{
+				this.books=res.data.books;
+			}).catch(()=>{
+			})
+		}
 		// filters:{
 		// 	info(value){
 		// 		return value+"  zzy"

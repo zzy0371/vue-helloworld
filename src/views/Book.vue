@@ -1,5 +1,5 @@
 <template>
-	<div class="book">
+	<div class="book" v-if="book">
 		<el-row>
 			<el-col :span="20">
 				<h1 class="title">{{book.title}} </h1>
@@ -21,7 +21,7 @@
 			</el-col>
 		</el-row>
 		<el-row class="list">
-			<el-col class="articletitle" :span="6" v-for="(a,index) in articles" :key="a.title">
+			<el-col class="articletitle" :span="6" v-for="(a,index) in book.articles" :key="a.title">
 				<router-link :to="'/article/'+a.id">
 					第{{index+1}}章-- {{a.title}}
 				</router-link>
@@ -33,29 +33,30 @@
 </template>
 
 <script>
-	import {articles,books} from '../data/bookdata.js'
+	// import {articles,books} from '../data/bookdata.js'
 	export default {
 		data(){
 			return{
 				user:null,
 				has:false,
 				book:null,
-				articles:[]
 			}
 		},
 		created() {		
 			let user = this.$jsCookie.get("user")
 			if(user){
 				this.user=user;
-			}
-			this.book = books.filter((item)=>{
-				return item.id == this.$route.params.pk;
-			})[0]
-			this.articles=articles.filter((item)=>{
-				return item.bookid == this.$route.params.pk;
+			}		
+			this.$axios(`getbook/${this.$route.params.pk}/`).then(res=>{
+				this.book = res.data;
+				this.has = this.$store.getters.getCollectBoos.indexOf(this.book.id)>=0?true:false
+			}).catch(err=>{
+				console.log("err",err);
 			})
 			
-			this.has = this.$store.getters.getCollectBoos.indexOf(this.book.id)>=0?true:false
+			
+			
+			
 		},
 		methods:{
 			goPrev(){
@@ -81,6 +82,8 @@
 	.outline{
 		text-indent: 2em;
 		padding: 20px;
+		line-height: 50px;
+		font-size: 20px;
 	}
 	.list{
 		padding: 40px 0px;
