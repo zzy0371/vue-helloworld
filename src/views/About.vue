@@ -54,7 +54,6 @@
 </template>
 
 <style>
-	
 	@keyframes hide{
 		from{
 			width: 100px;
