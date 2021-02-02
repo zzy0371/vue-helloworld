@@ -44,8 +44,8 @@ mock.mock(/article\/\d+/,function(option){
 })
 mock.mock(/collects/,/get/, function(){
 	return mock.mock({
-						"books": [{
-							"id":"@NATURAL(101,110)",
+						"books|3": [{
+							"id|+1":101,
 							"title":"@CTITLE"
 						}],
 					})

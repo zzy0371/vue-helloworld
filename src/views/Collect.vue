@@ -66,13 +66,14 @@
 					method:'delete'
 				}).then(res=>{
 					console.log("删除收藏成功",res.data);
+					this.tableData=this.tableData.filter(item=>{
+						return item.id != row.id
+					})
 				}).catch(err=>{
 					console.log("删除失败",err);
 				})
 				
-				this.tableData=this.tableData.filter(item=>{
-					return item.id != row.id
-				})
+				
 			}
 		}
 	}
