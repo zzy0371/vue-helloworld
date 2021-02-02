@@ -94,7 +94,7 @@ Vue.prototype.$mock.mock(/getbooks/,{
 	"books|10":[
 		{
 			"title": "@CTITLE",
-			"mainimg": "@IMAGE(240x320,@COLOR)",
+			"mainimg": "@DATAIMAGE(240x320,@COLOR)",
 			"outline": "@CSENTENCE(50,100)",
 			"id|+1": 101
 		},
@@ -102,9 +102,10 @@ Vue.prototype.$mock.mock(/getbooks/,{
 })
 
 Vue.prototype.$mock.mock(/getbook\/\d+/,function(option){
+	
 	let datas = option.url.split("/");
 	let pk = datas[datas.length-2]
-	console.log(pk);
+	console.log(option,pk);
 	return mock.mock({
 		"title": "@CTITLE",
 		"mainimg": "@IMAGE(240x320,@COLOR)",
@@ -124,7 +125,7 @@ Vue.prototype.$mock.mock(/getbook\/\d+/,function(option){
 Vue.prototype.$mock.mock(/article\/\d+/,function(option){
 	let datas = option.url.split("/");
 	let pk = datas[datas.length-2]
-	console.log(pk);
+	console.log(option,pk);
 	return mock.mock({
 						"id": pk,
 						"title": "@CTITLE(5,15)",

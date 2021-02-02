@@ -47,7 +47,10 @@
 			if(user){
 				this.user=user;
 			}		
-			this.$axios(`getbook/${this.$route.params.pk}/`).then(res=>{
+			this.$axios({
+				url:`getbook/${this.$route.params.pk}/`,
+				method:'get'
+			}).then(res=>{
 				this.book = res.data;
 				this.has = this.$store.getters.getCollectBoos.indexOf(this.book.id)>=0?true:false
 			}).catch(err=>{

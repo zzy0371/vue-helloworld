@@ -18,7 +18,10 @@
 			}
 		},
 		created() {			
-			this.$axios(`article/${this.$route.params.pk}/`).then(res=>{
+			this.$axios({
+				url:`article/${this.$route.params.pk}/`,
+				method:'get'
+			}).then(res=>{
 				this.article=res.data;
 			})
 			
