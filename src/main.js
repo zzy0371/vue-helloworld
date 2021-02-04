@@ -48,9 +48,16 @@ import axios from './api/index.js'
 Vue.prototype.$axios = axios
 
 // 导入mock数据
-import './mock/index.js'
+// import './mock/index.js'
 
 // 根VUE实例  
+
+
+// 使用Vant
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
+
 new Vue({
   router,
   store,

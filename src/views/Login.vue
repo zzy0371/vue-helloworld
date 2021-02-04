@@ -35,21 +35,38 @@
 		methods: {
 			onSubmit() {
 				console.log('登录成功');
-				this.$jsCookie.set('user', 'zzy0371', { expires: 7 })
 				
-				// this.$root.$children[0].user = "zzy0371"
-				this.$bus.$emit("userlogin","zzy0371")
-				
-				
-				let next = this.$route.query.next;
-				if(next){
-					this.$router.push(next)
-				}
-				else{
-					this.$router.push({name:'Home'})
-				}
-				
-				
+				this.$axios({
+					url:"user/login/",
+					method:"post",
+					data:{
+						username:this.formLabelAlign.username,
+						password:this.formLabelAlign.password
+					}
+				}).then((res)=>{
+
+					this.$message('登录成功');
+					
+					this.$jsCookie.set('token',res.data.access , { expires: 7 })
+					
+					// this.$root.$children[0].user = "zzy0371"
+					this.$bus.$emit("userlogin",this.formLabelAlign.username)
+					
+					
+					let next = this.$route.query.next;
+					if(next){
+						this.$router.push(next)
+					}
+					else{
+						this.$router.push({name:'Home'})
+					}
+					
+					
+					
+				}).catch(err=>{
+					console.log("错误原因",err);
+				})
+	
 			}
 		}
 	}

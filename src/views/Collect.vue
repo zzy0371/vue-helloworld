@@ -13,7 +13,7 @@
 			width="120">
 			</el-table-column>
 			<el-table-column
-			prop="title"
+			prop="book"
 			label="书籍名"
 			width="240">
 			</el-table-column>
@@ -49,7 +49,7 @@
 				method:"get"
 			}).then(res=>{
 				console.log(res.data,"res");
-				this.tableData=this.tableData.concat(res.data.books)
+				this.tableData=this.tableData.concat(res.data)
 			}).catch(err=>{
 				console.log("错误原因",err);
 			})

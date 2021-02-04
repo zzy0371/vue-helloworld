@@ -17,9 +17,9 @@
 				<el-menu-item index="3-1"><router-link style="color: rgb(255, 255, 255);text-decoration: none;" :to="{name:'Collect'}">收藏</router-link></el-menu-item>
 				</el-submenu>
 				
-				<template v-if="user">
+				<template v-if="userinfo">
 					<el-menu-item index="5" class="rt" @click="logout">退出</el-menu-item>
-					<el-menu-item index="4" class="rt"><router-link :to="{name:'Center'}">{{user}}</router-link></el-menu-item>
+					<el-menu-item index="4" class="rt"><router-link :to="{name:'Center'}">{{userinfo.username}}</router-link></el-menu-item>
 					
 				</template>
 				
@@ -47,18 +47,34 @@
 		data(){
 			return{
 				user:null,
-				activeIndex2: '1'
+				activeIndex2: '1',
+				userinfo:null
 			}
 		},
 		created() {
 			this.$bus.$on("userlogin",_u=>{
 				this.user=_u
+				this.$axios({
+					url:"users/getuserinfo/",
+					method:"get"
+				}).then(res=>{
+					console.log(res,"userinfo");
+					this.userinfo=res.data
+				})
 			})
 			
-			let user =this.$jsCookie.get('user')
+			let user =this.$jsCookie.get('token')
+
 			if(user)
 			{
 				this.user=user;
+				this.$axios({
+					url:"users/getuserinfo/",
+					method:"get"
+				}).then(res=>{
+					console.log(res,"userinfo");
+					this.userinfo=res.data
+				})
 			}
 		},
 		beforeDestroy() {
@@ -75,7 +91,7 @@
 					// this.$router.replace({name:"Home"})
 				}
 				this.user=null;
-				this.$jsCookie.remove('user')
+				this.$jsCookie.remove('token')
 			}
 		}
 	}

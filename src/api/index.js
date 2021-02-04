@@ -1,6 +1,6 @@
 // 导入axios 注册原型
 import axios from 'axios'
-axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api/';
 import Cookie from 'js-cookie'
 
 // 添加请求拦截器

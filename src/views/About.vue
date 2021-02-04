@@ -50,78 +50,125 @@
 	<button @click="getlatestdiarts">获取最新日记</button>
 	<button @click="getdiarybyid">获取指定日记</button>
 	<button @click="creatediary">创建日记</button>
+	
+	<br>
+	<br>
+	<br>
+	<el-button type="danger" style="padding: 100px;">危险按钮1</el-button>
+	<el-button type="danger">危险按钮2</el-button>
+	<br>
+	<br>
+	<br>
+	<van-button type="primary">主要按钮</van-button>
+	<van-button type="info">信息按钮</van-button>
+	<van-button type="default">默认按钮</van-button>
+	<van-button type="warning">警告按钮</van-button>
+	<van-button type="danger">危险按钮</van-button>
+	
+	<van-icon name="service" />
+	
+	<van-index-bar>
+		<van-index-anchor index="A" />
+		<van-cell v-for="item in 10" :key="'A'+item" :title="'文本A'+item" />
+
+	
+		<van-index-anchor index="B" />
+		<van-cell v-for="item in 10" :key="'B'+item" :title="'文本B'+item" />
+
+	</van-index-bar>
+	
+	<van-address-edit
+		:area-list="areaList"
+		show-postal
+		show-delete
+		show-set-default
+		show-search-result
+		:search-result="searchResult"
+		:area-columns-placeholder="['请选择', '请选择', '请选择']"
+		@save="onSave"
+		@delete="onDelete"
+		@change-detail="onChangeDetail"
+	/>
+	
   </div>
 </template>
 
-<style>
-	@keyframes hide{
-		from{
-			width: 100px;
-			height: 100px;
-			opacity: 1;
-			left: 0;
-		}
-		to{
-			width: 0;
-			height: 0;
-			opacity: 0;
-			left: -200px;
-		}
-	}
-	
-	.target{
-		width: 100px;
-		height: 100px;
-		background-color: red;
-		position: relative;
-	}
-	.v-enter{
 
-	}
-	.v-enter-active{
-		animation: hide 2s reverse linear;
-	}
-	.v-enter-to{
-	
-	}
-	.v-leave{
 
-	}
-	.v-leave-active{
-		animation: hide 2s linear;
-	}
-	.v-leave-to{
 
-	}
+<style scoped lang="less">
+	// .about{
+
+			@keyframes hide{
+				from{
+					width: 100px;
+					height: 100px;
+					opacity: 1;
+					left: 0;
+				}
+				to{
+					width: 0;
+					height: 0;
+					opacity: 0;
+					left: -200px;
+				}
+			}
+			
+			.target{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: relative;
+			}
+			.v-enter{
+		
+			}
+			.v-enter-active{
+				animation: hide 2s reverse linear;
+			}
+			.v-enter-to{
+			
+			}
+			.v-leave{
+		
+			}
+			.v-leave-active{
+				animation: hide 2s linear;
+			}
+			.v-leave-to{
+		
+			}
+			
+			
+			
+		/* 	.v-enter{
+				opacity: 0;
+				left: -200px;
+				width: 0;
+				height: 0;
+			}
+			.v-enter-active{
+				transition: all 2s linear;
+			}
+			.v-enter-to{
+				opacity: 1;
+				left: 0;
+			}
+			.v-leave{
+				opacity: 1;
+				left: 0;
+			}
+			.v-leave-active{
+				transition:  all 2s linear;
+			}
+			.v-leave-to{
+				opacity: 0;
+				left: -200px;
+				width: 0;
+				height: 0;
+			} */
+	// }
 	
-	
-	
-/* 	.v-enter{
-		opacity: 0;
-		left: -200px;
-		width: 0;
-		height: 0;
-	}
-	.v-enter-active{
-		transition: all 2s linear;
-	}
-	.v-enter-to{
-		opacity: 1;
-		left: 0;
-	}
-	.v-leave{
-		opacity: 1;
-		left: 0;
-	}
-	.v-leave-active{
-		transition:  all 2s linear;
-	}
-	.v-leave-to{
-		opacity: 0;
-		left: -200px;
-		width: 0;
-		height: 0;
-	} */
 	
 </style>
 
@@ -143,7 +190,24 @@ export default {
 	},
 	methods:{
 		// 请求API接口 获取点赞状态
-		
+		onSave() {
+			this.toast('save');
+		},
+		onDelete() {
+			this.toast('delete');
+		},
+		onChangeDetail(val) {
+			if (val) {
+				this.searchResult = [
+				{
+				name: '黄龙万科中心',
+				address: '杭州市西湖区',
+				},
+				];
+			} else {
+				this.searchResult = [];
+			}
+		},
 		
 		statechange(e){
 			console.log("通知服务器将商品点赞状态设置为", e.state);
@@ -257,7 +321,32 @@ export default {
 			// 从服务器获取客服评星
 			star2:2,
 			// 从服务器获取商品评星
-			star3:3
+			star3:3,
+			areaList:{
+			province_list: {
+				110000: '北京市',
+				120000: '天津市'
+			},
+			city_list: {
+				110100: '北京市',
+				110200: '县',
+				120100: '天津市',
+				120200: '县'
+			},
+			county_list: {
+				110101: '东城区',
+				110102: '西城区',
+				110105: '朝阳区',
+				110106: '丰台区',
+				120101: '和平区',
+				120102: '河东区',
+				120103: '河西区',
+				120104: '南开区',
+				120105: '河北区',
+			
+			}
+			},
+			searchResult: [],
 		}
 	}
 }

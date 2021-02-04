@@ -1,9 +1,9 @@
 <template>
 	<div class="article" v-if="article">
 		<el-row class="content">
-			<p>
-				{{article.content}}
-			</p>
+			<div v-html="article.content">
+				
+			</div>
 		</el-row>
 		<el-button type="danger" @click="$router.go(-1)">返回章节列表</el-button>
 	</div>
@@ -19,7 +19,7 @@
 		},
 		created() {			
 			this.$axios({
-				url:`article/${this.$route.params.pk}/`,
+				url:`articles/${this.$route.params.pk}/`,
 				method:'get'
 			}).then(res=>{
 				this.article=res.data;

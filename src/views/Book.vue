@@ -43,14 +43,15 @@
 			}
 		},
 		created() {		
-			let user = this.$jsCookie.get("user")
+			let user = this.$jsCookie.get("token")
 			if(user){
 				this.user=user;
 			}		
 			this.$axios({
-				url:`getbook/${this.$route.params.pk}/`,
+				url:`books/${this.$route.params.pk}/`,
 				method:'get'
 			}).then(res=>{
+				console.log(res);
 				this.book = res.data;
 				this.has = this.$store.getters.getCollectBoos.indexOf(this.book.id)>=0?true:false
 			}).catch(err=>{
@@ -68,17 +69,19 @@
 				// this.$router.push({name:"Article",params:{pk:100007}})
 			},
 			add(){
-				this.$message('加入书架');
-				this.has=true
+				
+				
 				// this.$store.commit("addCollect",this.book.id)
 				this.$axios({
-					url:"collects",
+					url:"collects/",
 					method:"post",
 					data:{
-						id:this.book.id
+						book:this.book.title
 					}
 				}).then(res=>{
 					console.log("收藏成功",res.data);
+					this.has=true
+					this.$message('加入书架');
 				}).catch(err=>{
 					console.log("收藏失败",err);
 				})

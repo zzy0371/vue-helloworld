@@ -6,7 +6,7 @@
 					<!-- <router-link :to="'/book/'+b.id"> -->
 					<router-link :to="{name:'Book',params:{pk:b.id}}">
 						<el-card :body-style="{ padding: '0px' }" shadow="hover" class="book">
-							<img :src="b.mainimg" class="image">
+							<img :src="'http://127.0.0.1:8000'+b.mainimg" class="image">
 							<div style="padding: 14px;">
 								<h3>{{b.title}}</h3>
 							</div>
@@ -33,9 +33,11 @@
 		created() {
 			this.$axios({
 				method:"get",
-				url:"getbooks/"
+				url:"books/"
 			}).then(res=>{
-				this.books=res.data.books;
+				console.log(res);
+				this.books = res.data
+				// this.books=res.data.books;
 			}).catch(()=>{
 			})
 		}
