@@ -28,13 +28,16 @@
 				labelPosition: 'right',
 				formLabelAlign: {
 					username: '',
-					password: '',
+					password: ''
 				}
 			};
 		},
 		methods: {
 			onSubmit() {
-				console.log('登录成功');
+				if(this.formLabelAlign.username.length<=0||this.formLabelAlign.password.length<=0){
+					this.$message("用户名密码均不能为空");
+					return
+				}
 				
 				this.$axios({
 					url:"user/login/",

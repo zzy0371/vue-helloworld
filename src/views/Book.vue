@@ -51,27 +51,17 @@
 				url:`books/${this.$route.params.pk}/`,
 				method:'get'
 			}).then(res=>{
-				console.log(res);
 				this.book = res.data;
 				this.has = this.$store.getters.getCollectBoos.indexOf(this.book.id)>=0?true:false
 			}).catch(err=>{
 				console.log("err",err);
-			})
-			
-			
-			
-			
+			})	
 		},
 		methods:{
 			goPrev(){
 				this.$router.go(-1)
-				// this.$router.push("/article/100007")
-				// this.$router.push({name:"Article",params:{pk:100007}})
 			},
 			add(){
-				
-				
-				// this.$store.commit("addCollect",this.book.id)
 				this.$axios({
 					url:"collects/",
 					method:"post",

@@ -3,7 +3,6 @@
 		<div class="books">
 			<el-row :gutter="20">
 				<el-col :span="6" v-for="b in books" :key="b.id">
-					<!-- <router-link :to="'/book/'+b.id"> -->
 					<router-link :to="{name:'Book',params:{pk:b.id}}">
 						<el-card :body-style="{ padding: '0px' }" shadow="hover" class="book">
 							<img :src="'http://127.0.0.1:8000'+b.mainimg" class="image">
@@ -21,8 +20,6 @@
 </template>
 
 <script>
-	// import {books} from '../data/bookdata.js'
-	// console.log("books", books)
 	export default {
 		name:'Home',
 		data(){
@@ -35,17 +32,10 @@
 				method:"get",
 				url:"books/"
 			}).then(res=>{
-				console.log(res);
 				this.books = res.data
-				// this.books=res.data.books;
 			}).catch(()=>{
 			})
 		}
-		// filters:{
-		// 	info(value){
-		// 		return value+"  zzy"
-		// 	}
-		// }
 	}
 </script>
 
